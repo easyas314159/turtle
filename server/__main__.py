@@ -29,6 +29,7 @@ async def main():
 	# Configure logging
 	logging.getLogger().setLevel(logging.DEBUG if args.debug else logging.INFO)
 
+	# Setup shutdown signal handlers
 	stopped = locks.Event()
 	shutdown_handler = partial(exit_handler, callback=lambda: stopped.set())
 
@@ -43,6 +44,7 @@ async def main():
 			# Ensure the passed temporary directory exists
 			os.makedirs(args.tmp_dir, exist_ok=True)
 
+		# Create the application and start the web server
 		app = create_application(args)
 		server = httpserver.HTTPServer(app)
 		server.listen(args.port, args.interface)
