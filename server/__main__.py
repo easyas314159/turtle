@@ -1,4 +1,5 @@
 import sys
+import time
 import signal
 import logging
 import argparse
@@ -7,12 +8,17 @@ import tempfile
 from functools import partial
 from contextlib import ExitStack
 
-from tornado import ioloop, locks
+from tornado import httpserver, ioloop, locks, web
+
+from app import create_application
 
 def get_cli_arguments():
 	parser = argparse.ArgumentParser()
 
 	parser.add_argument('--tmp-dir', default=None, help='')
+
+	parser.add_argument('-I', '--if', dest='interface', default='127.0.0.1', help='')
+	parser.add_argument('-p', '--port', type=int, default=8080, help='')
 
 	return parser.parse_args()
 
@@ -33,9 +39,22 @@ async def main():
 			# Ensure the passed temporary directory exists
 			os.makedirs(args.tmp_dir, exist_ok=True)
 
+		app = create_application(args)
+		server = httpserver.HTTPServer(app)
+		server.listen(args.port, args.interface)
+
+		logging.info('Listening on %s:%d', args.interface, args.port)
+
 		# Wait for shutdown
 		await stopped.wait()
 		logging.info('Starting shutdown')
+
+		elapsed = time.time()
+
+		server.stop()
+
+		elapsed = time.time() - elapsed
+		logging.info('Shutdown completed in %.3fs', elapsed)
 
 def exit_handler(sig, frame, callback=None):
 	if callback:
