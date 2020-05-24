@@ -2,6 +2,7 @@ import sys
 import signal
 import logging
 import argparse
+import tempfile
 
 from functools import partial
 from contextlib import ExitStack
@@ -10,6 +11,8 @@ from tornado import ioloop, locks
 
 def get_cli_arguments():
 	parser = argparse.ArgumentParser()
+
+	parser.add_argument('--tmp-dir', default=None, help='')
 
 	return parser.parse_args()
 
@@ -23,6 +26,13 @@ async def main():
 	signal.signal(signal.SIGTERM, shutdown_handler) # Include SIGTERM so we play nice with docker
 
 	with ExitStack() as stack:
+		if args.tmp_dir is None:
+			# Create a remporary directory and add it to the context so it gets cleaned up
+			args.tmp_dir = stack.enter_context(tempfile.TemporaryDirectory())
+		else:
+			# Ensure the passed temporary directory exists
+			os.makedirs(args.tmp_dir, exist_ok=True)
+
 		# Wait for shutdown
 		await stopped.wait()
 		logging.info('Starting shutdown')
