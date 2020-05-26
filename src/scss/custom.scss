@@ -1,5 +1,27 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 
+html {
+	height: 100%;
+	min-height: 100%;
+}
+
+body {
+	font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+	min-height: 100%;
+}
+
+html, body {
+	width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Inconsolata', Helvetica, Arial, sans-serif;
+	margin: 0 0 35px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
 .fullscreen {
 	position: absolute;
 	top: 0px;
