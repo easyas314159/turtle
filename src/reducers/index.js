@@ -1,3 +1,5 @@
 import {combineReducers} from 'redux';
 
-export default combineReducers({});
+import turtle from './turtle.js';
+
+export default combineReducers({turtle});
