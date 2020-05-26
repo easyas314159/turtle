@@ -108,5 +108,8 @@ module.exports = [
 				minify: process.env.NODE_ENV === 'production' ? htmlMinifyOptions : false,
 			}),
 		],
+		devServer: {
+			port: 9000
+		},
 	},
 ];
