@@ -1,9 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 
 import {loadProgram} from '../actions/turtle.js';
 
-export default class Navigation extends React.Component {
+class Navigation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.startOpen = this.startOpen.bind(this);
@@ -22,7 +24,7 @@ export default class Navigation extends React.Component {
 		evt.stopPropagation();
 		evt.preventDefault();
 
-		loadProgram(evt.target.files[0]);
+		this.props.loadProgram(evt.target.files[0]);
 	}
 
 	render() {
@@ -45,3 +47,5 @@ export default class Navigation extends React.Component {
 		);
 	}
 }
+
+export default connect(null, {loadProgram})(Navigation);
