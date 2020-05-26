@@ -34,7 +34,7 @@ module.exports = [
 		},
 		output: {
 			path: path.resolve(__dirname, './build'),
-			filename: 'js/app.js',
+			filename: 'js/app.[contenthash].js',
 		},
 		module: {
 			rules: [
@@ -99,8 +99,8 @@ module.exports = [
 		plugins: [
 			new webpack.ProgressPlugin(),
 			new MiniCssExtractPlugin({
-				filename: 'css/[name].css',
-				chunkFilename: 'css/[id].css',
+				filename: 'css/[name].[hash].css',
+				chunkFilename: 'css/[id].[hash].css',
 			}),
 			new HtmlWebpackPlugin({
 				template: './src/index.ejs',
