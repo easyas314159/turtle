@@ -19,8 +19,7 @@ const htmlMinifyOptions = {
 
 module.exports = [
 	{
-		// devtool: 'source-map',
-		// devtool: false,
+		devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : false,
 		entry: [
 			'./src/index.js',
 		],
