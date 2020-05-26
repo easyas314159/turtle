@@ -1,1 +1,13 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
+
+.fullscreen {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+}
+
+.beach {
+	top: 56px;
+}
