@@ -1,0 +1,20 @@
+svg polyline.path {
+	fill: none;
+	stroke: black;
+	stroke-width: 1px;
+	vector-effect: non-scaling-stroke;
+}
+
+svg circle.start {
+	fill: #00ff00;
+	stroke: #006600;
+	stroke-width: 2px;
+	vector-effect: non-scaling-stroke;
+}
+
+svg circle.end {
+	fill: #ff0000;
+	stroke: #660000;
+	stroke-width: 2px;
+	vector-effect: non-scaling-stroke;
+}
