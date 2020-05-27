@@ -8,7 +8,7 @@ Running either the docker based build or the local build will make the applicati
 ### Docker (Recommended)
 ```shell
 $> docker build -t kevinloney https://github.com/easyas314159/turtle.git
-$> docker run -p 8080:8080 kevinloney
+$> docker run -p 8080:80 kevinloney
 ```
 
 ### Locally
