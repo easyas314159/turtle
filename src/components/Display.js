@@ -10,7 +10,7 @@ class Display extends React.Component {
 
 	render() {
 		let component = null;
-		if(!!this.props.path) {
+		if (!!this.props.path) {
 			component = (<Beach path={this.props.path}/>);
 		}
 
@@ -18,7 +18,7 @@ class Display extends React.Component {
 			<div className='fullscreen display'>
 				{component}
 			</div>
-		)
+		);
 	}
 }
 
