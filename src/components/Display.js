@@ -11,7 +11,7 @@ class Display extends React.Component {
 	render() {
 		let component = null;
 		if (!!this.props.path) {
-			component = (<Beach path={this.props.path}/>);
+			component = (<Beach path={this.props.path} intersections={this.props.intersections}/>);
 		}
 
 		return (
