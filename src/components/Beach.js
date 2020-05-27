@@ -49,10 +49,19 @@ export default class Beach extends React.Component {
 					width={`${height}cm`}
 					preserveAspectRatio='xMidYMid meet'
 				>
-					<polyline className='path' points={points} />
-					<circle className='start' cx={path[0][0]} cy={path[0][1]} r={0.5} />
-					<circle className='end' cx={path[path.length-1][0]} cy={path[path.length-1][1]} r={0.5} />
-					{isec}
+					<polyline className='path' points={points}>
+						<title>Path</title>
+					</polyline>
+					<circle className='start' cx={path[0][0]} cy={path[0][1]} r={0.5}>
+						<title>Start</title>
+					</circle>
+					<circle className='end' cx={path[path.length-1][0]} cy={path[path.length-1][1]} r={0.5}>
+						<title>End</title>
+					</circle>
+					<g>
+						<title>Intersection</title>
+						{isec}
+					</g>
 				</svg>
 			</UncontrolledReactSVGPanZoom>
 		);
