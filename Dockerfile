@@ -6,6 +6,8 @@ RUN npm install && npm run build-prod
 
 FROM python:3.7-alpine
 
+LABEL maintainer="kevin.loney@gmail.com"
+
 WORKDIR /www
 COPY --from=build /repo/build .
 EXPOSE 8080/tcp
