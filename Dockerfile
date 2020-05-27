@@ -4,12 +4,9 @@ COPY . /repo
 WORKDIR /repo
 RUN npm install && npm run build-prod
 
-FROM python:3.7-alpine
+FROM nginx:alpine
 
 LABEL maintainer="kevin.loney@gmail.com"
 
-WORKDIR /www
-COPY --from=build /repo/build .
-EXPOSE 8080/tcp
-
-CMD python -m http.server 8080
+COPY --from=build /repo/build /usr/share/nginx/html
+EXPOSE 80/tcp
