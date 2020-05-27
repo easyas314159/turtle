@@ -1,12 +1,13 @@
-FROM node:14.3-alpine
+FROM node:14.3-alpine AS build
 
-RUN npm install -g http-server
+COPY . /repo
+WORKDIR /repo
+RUN npm install && npm run build-prod
 
-COPY . /sources
-WORKDIR /sources
-RUN npm install && npm run build-prod && mv build /www && rm -rf /sources
+FROM python:3.7-alpine
 
 WORKDIR /www
-EXPOSE 8080
+COPY --from=build /repo/build .
+EXPOSE 8080/tcp
 
-CMD http-server --silent
+CMD python -m http.server 8080
