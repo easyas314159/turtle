@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import {AutoSizer} from 'react-virtualized';
+
 import Beach from './Beach.js';
 
 class Display extends React.Component {
@@ -11,7 +13,13 @@ class Display extends React.Component {
 	render() {
 		let component = null;
 		if (!!this.props.path) {
-			component = (<Beach path={this.props.path} intersections={this.props.intersections}/>);
+			component = (
+				<AutoSizer>
+					{({width, height}) => width === 0 || height === 0 ? null : (
+						<Beach width={width} height={height} path={this.props.path} intersections={this.props.intersections}/>
+					)}
+				</AutoSizer>
+			);
 		}
 
 		return (
