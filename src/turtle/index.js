@@ -56,10 +56,14 @@ function computePath(cmds) {
 
 			break;
 		case 'L':
-			[dx, dy] = [-dy, dx];
+			for (let _ = 0; _ < d ; _++) {
+				[dx, dy] = [-dy, dx];
+			}
 			break;
 		case 'R':
-			[dx, dy] = [dy, -dx];
+			for (let _ = 0; _ < d ; _++) {
+				[dx, dy] = [dy, -dx];
+			}
 			break;
 		}
 	}
