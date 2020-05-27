@@ -7,7 +7,7 @@ export function compile(file) {
 		};
 		fileReader.onerror = function(evt) {
 			console.log(evt);
-			reject();
+			reject(Error());
 		};
 		fileReader.readAsText(file);
 	});
