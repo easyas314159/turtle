@@ -24,7 +24,10 @@ export default class Navigation extends React.Component {
 						<NavOpen />
 
 						<NavItem>
-							<NavLink target='_blank' href='https://github.com/easyas314159/turtle'><span class="fa fa-github"></span></NavLink>
+							<NavLink target='_blank' href='https://github.com/easyas314159/turtle'>
+								<i aria-hidden='true' class='fa fa-github' title='GitHub' />
+								<span class='sr-only'>GitHub</span>
+							</NavLink>
 						</NavItem>
 					</Nav>
 				</Collapse>
