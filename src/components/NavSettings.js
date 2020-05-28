@@ -12,8 +12,8 @@ class NavSettings extends React.Component {
 		return (
 			<UncontrolledDropdown nav inNavbar>
 				<DropdownToggle nav caret>
-					<i aria-hidden='true' class='fas fa-cog' title='Settings' />
-					<span class='sr-only'>Settings</span>
+					<i aria-hidden='true' className='fas fa-cog' title='Settings' />
+					<span className='sr-only'>Settings</span>
 				</DropdownToggle>
 				<DropdownMenu right>
 					<DropdownItem onClick={()=>this.props.changeSettings({showPath: !showPath})}>

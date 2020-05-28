@@ -27,8 +27,8 @@ class NavOpen extends React.Component {
 		return (
 			<NavItem>
 				<NavLink onClick={this.startOpen}>
-					<i aria-hidden='true' class='fas fa-file-upload' title='Open' />
-					<span class='sr-only'>Open</span>
+					<i aria-hidden='true' className='fas fa-file-upload' title='Open' />
+					<span className='sr-only'>Open</span>
 				</NavLink>
 				<input type='file' ref={(el)=>this.uploader=el} onChange={this.handleOpen} className='d-none'/>
 			</NavItem>
