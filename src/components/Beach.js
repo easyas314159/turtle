@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {UncontrolledReactSVGPanZoom} from 'react-svg-pan-zoom';
 
-export default class Beach extends React.Component {
+class Beach extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -13,6 +13,8 @@ export default class Beach extends React.Component {
 	}
 
 	render() {
+		const {showPath, showStart, showEnd, showIntersections, showOverlap} = this.props;
+
 		const path = this.props.path.map((xy) => [xy[0], -xy[1]]);
 		const points = path.map((xy) => `${xy[0]},${xy[1]}`).join(' ');
 
@@ -27,6 +29,8 @@ export default class Beach extends React.Component {
 		const isec = this.props.intersections.map((p, index) => (
 			<circle key={index} className='isec' cx={p[0]} cy={-p[1]} r={0.25} />
 		));
+
+		const overlap = null;
 
 		return (
 			<UncontrolledReactSVGPanZoom
@@ -49,21 +53,41 @@ export default class Beach extends React.Component {
 					width={`${height}cm`}
 					preserveAspectRatio='xMidYMid meet'
 				>
-					<polyline className='path' points={points}>
-						<title>Path</title>
-					</polyline>
-					<circle className='start' cx={path[0][0]} cy={path[0][1]} r={0.5}>
-						<title>Start</title>
-					</circle>
-					<circle className='end' cx={path[path.length-1][0]} cy={path[path.length-1][1]} r={0.5}>
-						<title>End</title>
-					</circle>
-					<g>
-						<title>Intersection</title>
-						{isec}
-					</g>
+					{showPath ? (
+						<polyline className='path' points={points}>
+							<title>Path</title>
+						</polyline>
+					): null}
+					{showStart ? (
+						<circle className='start' cx={path[0][0]} cy={path[0][1]} r={0.5}>
+							<title>Start</title>
+						</circle>
+					) : null}
+					{showEnd ? (
+						<circle className='end' cx={path[path.length-1][0]} cy={path[path.length-1][1]} r={0.5}>
+							<title>End</title>
+						</circle>
+					) : null}
+					{showIntersections ? (
+						<g>
+							<title>Intersection</title>
+							{isec}
+						</g>
+					) : null}
+					{showOverlap ? (
+						<g>
+							<title>Overlap</title>
+							{overlap}
+						</g>
+					) : null}
 				</svg>
 			</UncontrolledReactSVGPanZoom>
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return state.settings;
+}
+
+export default connect(mapStateToProps, {})(Beach);
