@@ -39,7 +39,7 @@ class Navigation extends React.Component {
 							<input type='file' ref={(el)=>this.uploader=el} onChange={this.handleOpen} className='d-none'/>
 						</NavItem>
 						<NavItem>
-							<NavLink target='_blank' href='https://github.com/easyas314159/turtle'>GitHub</NavLink>
+							<NavLink target='_blank' href='https://github.com/easyas314159/turtle'><span class="fa fa-github"></span></NavLink>
 						</NavItem>
 					</Nav>
 				</Collapse>
