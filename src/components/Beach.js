@@ -26,11 +26,15 @@ class Beach extends React.Component {
 
 		const viewBox = `${x0} ${y0} ${width} ${height}`;
 
-		const isec = this.props.intersections.map((p, index) => (
-			<circle key={index} className='isec' cx={p[0]} cy={-p[1]} r={0.25} />
-		));
+		const intersections = this.props.intersections
+			.filter(v => typeof v[0] === 'number')
+			.map((p, index) => (<circle key={index} cx={p[0]} cy={-p[1]} r={0.25} />))
+		;
 
-		const overlap = null;
+		const overlaps = this.props.intersections
+			.filter(v => Array.isArray(v[0]) && typeof v[0][0] === 'number')
+			.map(([p0, p1], index) => (<line key={index} x1={p0[0]} y1={-p0[1]} x2={p1[0]} y2={-p1[1]} />))
+		;
 
 		return (
 			<UncontrolledReactSVGPanZoom
@@ -58,6 +62,12 @@ class Beach extends React.Component {
 							<title>Path</title>
 						</polyline>
 					): null}
+					{showOverlap ? (
+						<g className='overlaps'>
+							<title>Overlap</title>
+							{overlaps}
+						</g>
+					) : null}
 					{showStart ? (
 						<circle className='start' cx={path[0][0]} cy={path[0][1]} r={0.5}>
 							<title>Start</title>
@@ -69,15 +79,9 @@ class Beach extends React.Component {
 						</circle>
 					) : null}
 					{showIntersections ? (
-						<g>
+						<g className='intersections'>
 							<title>Intersection</title>
-							{isec}
-						</g>
-					) : null}
-					{showOverlap ? (
-						<g>
-							<title>Overlap</title>
-							{overlap}
+							{intersections}
 						</g>
 					) : null}
 				</svg>

@@ -19,9 +19,15 @@ svg circle.end {
 	vector-effect: non-scaling-stroke;
 }
 
-svg circle.isec {
+svg g.intersections circle {
 	fill: #0000ff;
 	stroke: #000066;
-	stroke-width: 1px;
+	stroke-width: 2px;
+	vector-effect: non-scaling-stroke;
+}
+
+svg g.overlaps line {
+	stroke: #000066;
+	stroke-width: 3px;
 	vector-effect: non-scaling-stroke;
 }
