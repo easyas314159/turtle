@@ -89,45 +89,53 @@ function computeSelfIntersections(path) {
 		lines.push([p0, p1]);
 	}
 
-	let isec = []
+	const intersections = [];
 	for (let curr = 1; curr < lines.length; curr++) {
+		const l0 = lines[curr];
+
 		for (let prev = 0; prev < curr; prev++) {
-			let l0 = lines[curr];
-			let l1 = lines[prev];
+			const l1 = lines[prev];
 
-			if(l0[0][0] == l0[1][0] && l1[0][0] == l1[1][0]) {
-				// Handle vertical lines with the same x coordinate
-				if(l0[0][0] == l1[0][0]) {
-					let y0 = Math.max(l0[0][1], l1[0][1]);
-					let y1 = Math.min(l0[1][1], l1[1][1]);
-
-					if(y0 < y1) {
-						isec.push([[l0[0][0], y0], [l0[0][0], y1]]);
-					}
-				}
-			} else if(l0[0][1] == l0[1][1] && l1[0][1] == l1[1][1]) {
-				// Handle horizontal lines with the same y coordinate
-				if(l0[0][1] == l1[0][1]) {
-					let x0 = Math.max(l0[0][0], l1[0][0]);
-					let x1 = Math.min(l0[1][0], l1[1][0]);
-
-					if(x0 < x1) {
-						isec.push([[x0, l0[0][1]], [x1, l0[0][1]]]);
-					}
-				}
-			} else if(curr - prev > 1) {
-				// Handle lines at right angles to each other
-				if(l0[0][1] == l0[1][1]) {
-					// Make sure l0 is always the vertical line and l1 is always the horizontal line
-					[l0, l1] = [l1, l0];
-				}
-
-				if(l1[0][0] <= l0[0][0] && l0[0][0] <= l1[1][0] && l0[0][1] <= l1[0][1] && l1[0][1] <= l0[0][1]) {
-					isec.push([l0[0][0], l1[0][1]]);
-				}
+			const isec = intersectLines(l0, l1);
+			if(isec && !(curr - prev == 1 && typeof isec[0] === 'number')) {
+				intersections.push(isec);
 			}
 		}
 	}
 
-	return isec;
+	return intersections;
+}
+
+export function intersectLines(l0, l1) {
+	if (l0[0][0] == l0[1][0] && l1[0][0] == l1[1][0]) {
+		// Handle vertical lines with the same x coordinate
+		if (l0[0][0] == l1[0][0]) {
+			const y0 = Math.max(l0[0][1], l1[0][1]);
+			const y1 = Math.min(l0[1][1], l1[1][1]);
+
+			if (y0 < y1) {
+				return [[l0[0][0], y0], [l0[0][0], y1]];
+			}
+		}
+	} else if (l0[0][1] == l0[1][1] && l1[0][1] == l1[1][1]) {
+		// Handle horizontal lines with the same y coordinate
+		if (l0[0][1] == l1[0][1]) {
+			const x0 = Math.max(l0[0][0], l1[0][0]);
+			const x1 = Math.min(l0[1][0], l1[1][0]);
+
+			if (x0 < x1) {
+				return [[x0, l0[0][1]], [x1, l0[0][1]]];
+			}
+		}
+	} else {
+		// Handle lines at right angles to each other
+		if (l0[0][1] == l0[1][1]) {
+			// Make sure l0 is always the vertical line and l1 is always the horizontal line
+			[l0, l1] = [l1, l0];
+		}
+
+		if (l1[0][0] <= l0[0][0] && l0[0][0] <= l1[1][0] && l0[0][1] <= l1[0][1] && l1[0][1] <= l0[0][1]) {
+			return [l0[0][0], l1[0][1]];
+		}
+	}
 }
