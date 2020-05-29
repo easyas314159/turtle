@@ -15,6 +15,7 @@ $> docker run -p 8080:80 kevinloney
 
 #### Local Build Context
 ```shell
+$> git clone https://github.com/easyas314159/turtle.git
 $> docker build -t kevinloney .
 $> docker run -p 8080:80 kevinloney
 ```
