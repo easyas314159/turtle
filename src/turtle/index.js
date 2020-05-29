@@ -58,12 +58,12 @@ export function computePath(cmds) {
 
 			break;
 		case 'L':
-			for (let _ = 0; _ < d ; _++) {
+			for (let _ = 0; _ < d; _++) {
 				[dx, dy] = [-dy, dx];
 			}
 			break;
 		case 'R':
-			for (let _ = 0; _ < d ; _++) {
+			for (let _ = 0; _ < d; _++) {
 				[dx, dy] = [dy, -dx];
 			}
 			break;
@@ -79,10 +79,10 @@ export function computeSelfIntersections(path) {
 		let p0 = path[idx-1];
 		let p1 = path[idx];
 
-		if(p0[0] > p1[0]) {
+		if (p0[0] > p1[0]) {
 			[p0, p1] = [p1, p0];
 		}
-		if(p0[1] > p1[1]) {
+		if (p0[1] > p1[1]) {
 			[p0, p1] = [p1, p0];
 		}
 
