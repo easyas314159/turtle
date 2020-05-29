@@ -16,13 +16,14 @@ $> docker run -p 8080:80 kevinloney
 #### Local Build Context
 ```shell
 $> git clone https://github.com/easyas314159/turtle.git
-$> docker build -t kevinloney .
+$> docker build -t kevinloney turtle
 $> docker run -p 8080:80 kevinloney
 ```
 
 ### Locally
 ```shell
 $> git clone https://github.com/easyas314159/turtle.git
+$> cd turtle
 $> npm install
 $> npm build-prod
 $> python[3] -m http.server 8080 --directory build
