@@ -24,5 +24,5 @@ $> docker run -p 8080:80 kevinloney
 $> git clone https://github.com/easyas314159/turtle.git
 $> npm install
 $> npm build-prod
-$> http-server build
+$> python[3] -m http.server 8080 --directory build
 ```
