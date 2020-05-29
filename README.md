@@ -26,3 +26,8 @@ $> npm install
 $> npm build-prod
 $> python[3] -m http.server 8080 --directory build
 ```
+
+### Testing
+```shell
+$> npm run coverage
+```
