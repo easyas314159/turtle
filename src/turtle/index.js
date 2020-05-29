@@ -1,5 +1,3 @@
-import sortBy from 'lodash.sortby';
-
 export function compile(file) {
 	const fileReader = new FileReader();
 

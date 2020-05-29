@@ -27,18 +27,18 @@ class Beach extends React.Component {
 		const viewBox = `${x0} ${y0} ${width} ${height}`;
 
 		const intersections = this.props.intersections
-			.filter(v => typeof v[0] === 'number')
+			.filter((v) => typeof v[0] === 'number')
 			.map((p, index) => (<circle key={index} cx={p[0]} cy={-p[1]} r={0.25} />))
 		;
 
 		const overlaps = this.props.intersections
-			.filter(v => Array.isArray(v[0]) && typeof v[0][0] === 'number')
+			.filter((v) => Array.isArray(v[0]) && typeof v[0][0] === 'number')
 			.map(([p0, p1], index) => (<line key={index} x1={p0[0]} y1={-p0[1]} x2={p1[0]} y2={-p1[1]} />))
 		;
 
 		return (
 			<UncontrolledReactSVGPanZoom
-				ref={el=>this.Viewer=el}
+				ref={(el)=>this.Viewer=el}
 				className='beach'
 				width={this.props.width}
 				height={this.props.height}
@@ -54,7 +54,7 @@ class Beach extends React.Component {
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox={viewBox}
 					width={`${width}cm`}
-					width={`${height}cm`}
+					height={`${height}cm`}
 					preserveAspectRatio='xMidYMid meet'
 				>
 					{showPath ? (

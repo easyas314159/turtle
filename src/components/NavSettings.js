@@ -38,7 +38,7 @@ class NavSettings extends React.Component {
 				</DropdownMenu>
 			</UncontrolledDropdown>
 		);
-	};
+	}
 }
 
 function mapStateToProps(state) {

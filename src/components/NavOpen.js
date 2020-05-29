@@ -34,6 +34,6 @@ class NavOpen extends React.Component {
 			</NavItem>
 		);
 	}
-};
+}
 
 export default connect(null, {loadProgram})(NavOpen);
