@@ -13,7 +13,7 @@ export function compile(file) {
 	});
 }
 
-function programFromSource(cmds) {
+export function programFromSource(cmds) {
 	const errors = [];
 
 	// Remove any invalid characters
@@ -41,7 +41,7 @@ function programFromSource(cmds) {
 	};
 }
 
-function computePath(cmds) {
+export function computePath(cmds) {
 	const path = [[0, 0]];
 
 	let x = 0; let y = 0; let dx = 0; let dy = 1;
@@ -73,8 +73,8 @@ function computePath(cmds) {
 	return path;
 }
 
-function computeSelfIntersections(path) {
-	let lines = [];
+export function computeSelfIntersections(path) {
+	const lines = [];
 	for (let idx = 1; idx < path.length; idx++) {
 		let p0 = path[idx-1];
 		let p1 = path[idx];
